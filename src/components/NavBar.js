@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextForm from './TextForm';
+// import TextForm from './TextForm';
 
 
 export default function NavBar(props) {
   return (
     <div>
-       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+       <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
   <div className="container-fluid">
     <a className="navbar-brand" href="/">{props.title}</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="/navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,18 +21,23 @@ export default function NavBar(props) {
           <a className="nav-link" href="/">{props.aboutTextUtils}</a>
         </li>
       </ul>
+      <div className={`form-check form-switch  text-${props.mode==='dark'?'light':'dark'} mx-2`}>
+  <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
+  <label className="form-check-label" for="flexSwitchCheckDefault">Enable dark mode</label>
+</div>
       <form className="d-flex" role="search">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
+        <button className="btn btn-primary" type="submit">Search</button>
       </form>
+      
     </div>
   </div>
 </nav>
 {/* container is bootstraps provided it makes your object in centre 
 my-3 gives margin by 3   */}
-<div className='container my-3'>
+{/* <div className='container my-3'>
 <TextForm heading="Enter the text to analyze below"></TextForm>
-</div>
+</div> */}
     </div>
   )
 }
@@ -49,5 +54,5 @@ NavBar.propTypes = {
 
 NavBar.defaultProps = {
     title : "here is title",
-    aboutTextUtils: "here is about"
+    aboutTextUtils: "about"
 }
